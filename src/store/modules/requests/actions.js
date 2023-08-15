@@ -23,7 +23,8 @@ export default {
     },
     async fetchRequests(context) { 
         const coachId = context.rootGetters.userId;
-        const response = await fetch(`https://coach-finder-3b3d0-default-rtdb.europe-west1.firebasedatabase.app/${coachId}.json`);
+        const token = context.rootGetters.token;
+        const response = await fetch(`https://coach-finder-3b3d0-default-rtdb.europe-west1.firebasedatabase.app/${coachId}.json?auth=` + token);
         const responseData = await response.json();
         if (!response.ok) {
             const error = new Error(responseData.message || 'Failed to fetch requests.');

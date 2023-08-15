@@ -30,7 +30,9 @@ export default {
         if (!payload.forceRefresh && !context.getters.shouldUpdate) { 
             return;
         }
-        const response = await fetch(`https://coach-finder-3b3d0-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`);
+const token = context.rootGetters.token
+
+        const response = await fetch(`https://coach-finder-3b3d0-default-rtdb.europe-west1.firebasedatabase.app/coaches.json?auth=` + token);
         const responseData = await response.json();
 
         if (!response.ok) {
